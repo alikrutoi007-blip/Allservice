@@ -17,17 +17,16 @@ export default function Icon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "#102a43",
-          color: "#00b8a0",
-          fontSize: 38,
+          background: "#111820",
+          color: "#ef5b2a",
+          fontSize: 28,
           fontWeight: 800,
-          borderRadius: 14,
+          borderRadius: 8,
         }}
       >
-        Ж
+        A
       </div>
     ),
     size,
   );
 }
-

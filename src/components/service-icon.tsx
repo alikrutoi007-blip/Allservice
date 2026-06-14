@@ -1,22 +1,48 @@
 import {
   AirVent,
-  CirclePower,
+  Building2,
+  Coffee,
   CookingPot,
-  PlugZap,
+  CupSoda,
+  Drill,
+  Flame,
+  IceCreamBowl,
+  Microwave,
   Refrigerator,
+  Snowflake,
+  Store,
+  UtensilsCrossed,
   WashingMachine,
-  Wrench,
+  Waves,
+  Wind,
+  Wine,
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import type { ServiceIcon as ServiceIconName } from "@/data/services";
 
-const iconMap = {
+const iconMap: Record<ServiceIconName, LucideIcon> = {
   "washing-machine": WashingMachine,
   refrigerator: Refrigerator,
   dishwasher: CookingPot,
-  plumber: Wrench,
-  electrician: PlugZap,
+  dryer: Wind,
+  oven: Microwave,
+  cooktop: Flame,
+  "wine-cooler": Wine,
   "air-conditioner": AirVent,
-} satisfies Record<ServiceIconName, typeof CirclePower>;
+  "appliance-installation": Drill,
+  "commercial-equipment": Building2,
+  "commercial-refrigeration": Snowflake,
+  "walk-in-cooler": Store,
+  "reach-in-cooler": Refrigerator,
+  "ice-machine": IceCreamBowl,
+  "commercial-oven": Microwave,
+  fryer: CookingPot,
+  grill: Flame,
+  "commercial-dishwasher": Waves,
+  "coffee-machine": Coffee,
+  "slush-machine": CupSoda,
+  "restaurant-installation": UtensilsCrossed,
+};
 
 export function ServiceIcon({
   name,
@@ -28,4 +54,3 @@ export function ServiceIcon({
   const Icon = iconMap[name];
   return <Icon size={size} strokeWidth={1.7} aria-hidden="true" />;
 }
-

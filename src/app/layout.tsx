@@ -7,35 +7,45 @@ import { MobileActionBar } from "@/components/mobile-action-bar";
 import { siteConfig } from "@/config/site";
 import "./globals.css";
 
+const brandName = "Allservice";
+const siteUrl = siteConfig.siteUrl.replace(/\/$/, "");
+const siteDescription =
+  "Ремонт и установка бытовой и коммерческой техники и оборудования в Алматы.";
+
 export const metadata: Metadata = {
-  metadataBase: new URL(siteConfig.siteUrl),
+  metadataBase: new URL(siteUrl),
+  applicationName: brandName,
   title: {
-    default: "Бәрі Жөн — ремонт и мастера по дому в Алматы",
-    template: "%s | Бәрі Жөн",
+    default: "Allservice — ремонт и установка техники в Алматы",
+    template: "%s | Allservice",
   },
-  description: siteConfig.description,
+  description: siteDescription,
   alternates: {
     canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
   openGraph: {
     type: "website",
     locale: "ru_KZ",
-    siteName: siteConfig.name,
-    title: "Ремонт и мастера по дому в Алматы",
-    description: siteConfig.description,
+    siteName: brandName,
+    title: "Allservice — ремонт и установка техники в Алматы",
+    description: siteDescription,
     images: [
       {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Бәрі Жөн — сервис мастеров в Алматы",
+        alt: "Allservice — ремонт и установка техники в Алматы",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Бәрі Жөн — мастера по дому в Алматы",
-    description: siteConfig.description,
+    title: "Allservice — ремонт и установка техники в Алматы",
+    description: siteDescription,
     images: ["/opengraph-image"],
   },
 };
@@ -43,7 +53,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#102a43",
+  themeColor: "#111820",
   colorScheme: "light",
 };
 
@@ -52,35 +62,40 @@ const organizationSchema = {
   "@graph": [
     {
       "@type": "Organization",
-      "@id": `${siteConfig.siteUrl}/#organization`,
-      name: siteConfig.name,
-      url: siteConfig.siteUrl,
+      "@id": `${siteUrl}/#organization`,
+      name: brandName,
+      url: siteUrl,
       telephone: siteConfig.phoneDisplay,
-      logo: `${siteConfig.siteUrl}/icon`,
+      logo: `${siteUrl}/icon`,
     },
     {
       "@type": "LocalBusiness",
-      "@id": `${siteConfig.siteUrl}/#business`,
-      name: siteConfig.name,
-      url: siteConfig.siteUrl,
+      "@id": `${siteUrl}/#business`,
+      name: brandName,
+      url: siteUrl,
       telephone: siteConfig.phoneDisplay,
-      description: siteConfig.description,
+      description: siteDescription,
+      serviceType: [
+        "Ремонт бытовой техники",
+        "Ремонт коммерческого оборудования",
+        "Установка техники и оборудования",
+      ],
       areaServed: {
         "@type": "City",
-        name: siteConfig.city,
+        name: "Алматы",
       },
       parentOrganization: {
-        "@id": `${siteConfig.siteUrl}/#organization`,
+        "@id": `${siteUrl}/#organization`,
       },
     },
     {
       "@type": "WebSite",
-      "@id": `${siteConfig.siteUrl}/#website`,
-      url: siteConfig.siteUrl,
-      name: siteConfig.name,
+      "@id": `${siteUrl}/#website`,
+      url: siteUrl,
+      name: brandName,
       inLanguage: "ru-KZ",
       publisher: {
-        "@id": `${siteConfig.siteUrl}/#organization`,
+        "@id": `${siteUrl}/#organization`,
       },
     },
   ],
@@ -104,4 +119,3 @@ export default function RootLayout({
     </html>
   );
 }
-

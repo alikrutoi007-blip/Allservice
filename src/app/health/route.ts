@@ -1,8 +1,7 @@
 export function GET() {
   return Response.json({
     status: "ok",
-    service: "bari-jon-service",
+    service: "allservice-almaty",
     timestamp: new Date().toISOString(),
   });
 }
-

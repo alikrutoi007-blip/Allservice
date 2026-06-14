@@ -2,14 +2,16 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Бәрі Жөн — сервис мастеров в Алматы",
-    short_name: "Бәрі Жөн",
+    name: "Allservice — ремонт и установка техники в Алматы",
+    short_name: "Allservice",
     description:
-      "Ремонт бытовой техники и мастера по дому с выездом по Алматы.",
+      "Ремонт и установка бытовой и коммерческой техники и оборудования в Алматы.",
+    lang: "ru-KZ",
+    dir: "ltr",
     start_url: "/",
     display: "standalone",
     background_color: "#ffffff",
-    theme_color: "#102a43",
+    theme_color: "#111820",
     icons: [
       {
         src: "/icon",
@@ -19,4 +21,3 @@ export default function manifest(): MetadataRoute.Manifest {
     ],
   };
 }
-

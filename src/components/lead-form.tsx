@@ -16,6 +16,10 @@ export function LeadForm({
   const [service, setService] = useState(defaultService);
   const [error, setError] = useState("");
   const started = useRef(false);
+  const homeServices = services.filter((item) => item.audience === "home");
+  const businessServices = services.filter(
+    (item) => item.audience === "business",
+  );
 
   function markStarted() {
     if (!started.current) {
@@ -27,7 +31,9 @@ export function LeadForm({
   function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = new FormData(event.currentTarget);
+    const name = String(form.get("name") ?? "").trim();
     const phone = String(form.get("phone") ?? "").trim();
+    const problem = String(form.get("problem") ?? "").trim();
     const consent = form.get("consent");
     const digits = phone.replace(/\D/g, "");
 
@@ -44,17 +50,20 @@ export function LeadForm({
     const params = new URLSearchParams(window.location.search);
     const selected =
       services.find((item) => item.slug === service)?.name || "Не указана";
-    const source = params.get("utm_source");
-    const campaign = params.get("utm_campaign");
-    const gclid = params.get("gclid");
     const message = [
-      "Здравствуйте! Хочу вызвать мастера.",
+      "Здравствуйте! Хочу оставить заявку в Allservice.",
+      name ? `Имя: ${name}.` : "",
       `Услуга: ${selected}.`,
-      `Телефон для связи: ${phone}.`,
+      `Телефон: ${phone}.`,
+      problem ? `Описание: ${problem}.` : "",
       `Страница: ${window.location.href}.`,
-      source ? `Источник: ${source}.` : "",
-      campaign ? `Кампания: ${campaign}.` : "",
-      gclid ? `GCLID: ${gclid}.` : "",
+      params.get("utm_source")
+        ? `Источник: ${params.get("utm_source")}.`
+        : "",
+      params.get("utm_campaign")
+        ? `Кампания: ${params.get("utm_campaign")}.`
+        : "",
+      params.get("gclid") ? `GCLID: ${params.get("gclid")}.` : "",
     ]
       .filter(Boolean)
       .join("\n");
@@ -64,8 +73,11 @@ export function LeadForm({
       lead_channel: "whatsapp",
     });
 
-    const whatsapp = `https://wa.me/${siteConfig.phoneDigits}?text=${encodeURIComponent(message)}`;
-    window.open(whatsapp, "_blank", "noopener,noreferrer");
+    window.open(
+      `https://wa.me/${siteConfig.phoneDigits}?text=${encodeURIComponent(message)}`,
+      "_blank",
+      "noopener,noreferrer",
+    );
     window.location.assign("/thank-you");
   }
 
@@ -78,6 +90,26 @@ export function LeadForm({
     >
       <div className="form-fields">
         <label>
+          <span>Ваше имя</span>
+          <input
+            type="text"
+            name="name"
+            autoComplete="name"
+            placeholder="Как к вам обращаться"
+          />
+        </label>
+        <label>
+          <span>Номер телефона *</span>
+          <input
+            type="tel"
+            name="phone"
+            inputMode="tel"
+            autoComplete="tel"
+            placeholder="+7 700 000 00 00"
+            required
+          />
+        </label>
+        <label>
           <span>Какая услуга нужна?</span>
           <select
             name="service"
@@ -88,22 +120,28 @@ export function LeadForm({
             }}
           >
             <option value="">Выберите услугу</option>
-            {services.map((item) => (
-              <option key={item.slug} value={item.slug}>
-                {item.name}
-              </option>
-            ))}
+            <optgroup label="Для дома">
+              {homeServices.map((item) => (
+                <option key={item.slug} value={item.slug}>
+                  {item.name}
+                </option>
+              ))}
+            </optgroup>
+            <optgroup label="Для бизнеса">
+              {businessServices.map((item) => (
+                <option key={item.slug} value={item.slug}>
+                  {item.name}
+                </option>
+              ))}
+            </optgroup>
           </select>
         </label>
         <label>
-          <span>Номер телефона</span>
+          <span>Что произошло?</span>
           <input
-            type="tel"
-            name="phone"
-            inputMode="tel"
-            autoComplete="tel"
-            placeholder="+7 700 000 00 00"
-            required
+            type="text"
+            name="problem"
+            placeholder="Например: холодильник не охлаждает"
           />
         </label>
       </div>
@@ -122,14 +160,13 @@ export function LeadForm({
         </p>
       ) : null}
       <button type="submit" className="button button-primary form-submit">
-        Отправить в WhatsApp
-        <ArrowRight size={19} aria-hidden="true" />
+        Отправить заявку
+        <ArrowRight size={18} aria-hidden="true" />
       </button>
       <p className="form-note">
-        Откроется WhatsApp с готовой заявкой. Вы сможете проверить сообщение
-        перед отправкой.
+        Откроется WhatsApp с готовым сообщением. Вы сможете проверить его перед
+        отправкой.
       </p>
     </form>
   );
 }
-

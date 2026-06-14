@@ -1,24 +1,37 @@
 import Link from "next/link";
 import { BrandLogo } from "@/components/brand-logo";
 import { services } from "@/data/services";
-import { siteConfig, getWhatsappUrl } from "@/config/site";
+import { getWhatsappUrl, siteConfig } from "@/config/site";
 import { TrackedLink } from "@/components/tracked-links";
 
 export function Footer() {
+  const homeServices = services.filter((service) => service.audience === "home");
+  const businessServices = services.filter(
+    (service) => service.audience === "business",
+  );
+
   return (
     <footer className="site-footer">
       <div className="container footer-grid">
-        <div>
+        <div className="footer-brand">
           <BrandLogo inverse />
-          <p className="footer-summary">
-            Выездной сервис бытовых задач в Алматы. Стоимость согласовывается до
-            начала работ.
+          <p>
+            Ремонт и установка бытовой и коммерческой техники в Алматы. Для
+            квартир, частных домов, ресторанов, кафе и профессиональных кухонь.
           </p>
+          <TrackedLink
+            href={siteConfig.phoneHref}
+            event="call_click"
+            label="footer"
+            className="footer-phone"
+          >
+            {siteConfig.phoneDisplay}
+          </TrackedLink>
         </div>
         <div>
-          <h2>Услуги</h2>
+          <h2>Для дома</h2>
           <ul>
-            {services.slice(0, 5).map((service) => (
+            {homeServices.slice(0, 6).map((service) => (
               <li key={service.slug}>
                 <Link href={`/${service.slug}`}>{service.shortName}</Link>
               </li>
@@ -26,16 +39,23 @@ export function Footer() {
           </ul>
         </div>
         <div>
-          <h2>Контакты</h2>
+          <h2>Для бизнеса</h2>
+          <ul>
+            {businessServices.slice(0, 7).map((service) => (
+              <li key={service.slug}>
+                <Link href={`/${service.slug}`}>{service.shortName}</Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <h2>Компания</h2>
           <ul>
             <li>
-              <TrackedLink
-                href={siteConfig.phoneHref}
-                event="call_click"
-                label="footer"
-              >
-                {siteConfig.phoneDisplay}
-              </TrackedLink>
+              <Link href="/services">Все услуги</Link>
+            </li>
+            <li>
+              <Link href="/contacts">Контакты</Link>
             </li>
             <li>
               <TrackedLink
@@ -47,17 +67,8 @@ export function Footer() {
                 WhatsApp
               </TrackedLink>
             </li>
-            <li>{siteConfig.serviceArea}</li>
-          </ul>
-        </div>
-        <div>
-          <h2>Информация</h2>
-          <ul>
             <li>
-              <Link href="/contacts">О компании и контакты</Link>
-            </li>
-            <li>
-              <Link href="/privacy">Политика конфиденциальности</Link>
+              <Link href="/privacy">Конфиденциальность</Link>
             </li>
             <li>
               <Link href="/terms">Условия оказания услуг</Link>
@@ -66,10 +77,9 @@ export function Footer() {
         </div>
       </div>
       <div className="container footer-bottom">
-        <span>© {new Date().getFullYear()} Бәрі Жөн</span>
-        <span>Выездная служба по Алматы</span>
+        <span>© {new Date().getFullYear()} Allservice</span>
+        <span>{siteConfig.serviceArea}</span>
       </div>
     </footer>
   );
 }
-

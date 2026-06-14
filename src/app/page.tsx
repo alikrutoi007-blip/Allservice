@@ -2,198 +2,206 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
-  BadgeCheck,
-  Calculator,
-  CheckCircle2,
-  ClipboardCheck,
-  FileCheck2,
-  MapPin,
+  Check,
   MessageCircle,
   Phone,
-  Search,
   ShieldCheck,
-  Wrench,
 } from "lucide-react";
 import { JsonLd } from "@/components/json-ld";
 import { LeadForm } from "@/components/lead-form";
-import { ServiceIcon } from "@/components/service-icon";
+import { ServiceCard } from "@/components/service-card";
 import { TrackedLink } from "@/components/tracked-links";
 import { getWhatsappUrl, siteConfig } from "@/config/site";
 import { services } from "@/data/services";
-
-const process = [
-  {
-    icon: ClipboardCheck,
-    title: "Заявка",
-    text: "Позвоните или отправьте короткую заявку.",
-  },
-  {
-    icon: Phone,
-    title: "Уточнение",
-    text: "Обсудим задачу и согласуем удобное время.",
-  },
-  {
-    icon: Search,
-    title: "Диагностика",
-    text: "Мастер определит причину неисправности.",
-  },
-  {
-    icon: Calculator,
-    title: "Цена",
-    text: "До начала работ согласуем итоговую стоимость.",
-  },
-  {
-    icon: Wrench,
-    title: "Работа",
-    text: "Выполним согласованный объем работ.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Гарантия",
-    text: "Зафиксируем условия гарантии на выполненные работы.",
-  },
-];
-
-const homeFaq = [
-  {
-    question: "Сколько стоит выезд мастера?",
-    answer:
-      "Условия выезда зависят от услуги и района. Оператор уточнит их до оформления заказа, без скрытых доплат после приезда.",
-  },
-  {
-    question: "Можно ли узнать точную цену заранее?",
-    answer:
-      "По телефону можно получить ориентир. Точную стоимость мастер сообщает после диагностики и до начала работ. Без вашего согласия ремонт не начинается.",
-  },
-  {
-    question: "Какие районы Алматы вы обслуживаете?",
-    answer:
-      "Работаем по Алматы и ближайшим районам. Назовите адрес при обращении, и оператор подтвердит возможность и время выезда.",
-  },
-  {
-    question: "Как действует гарантия?",
-    answer:
-      "Срок зависит от вида работы и установленных деталей. Условия фиксируются после выполнения заказа.",
-  },
-  {
-    question: "Как оплатить работу?",
-    answer:
-      "Доступные способы оплаты оператор подтвердит при оформлении. Итоговая сумма согласовывается до начала работ.",
-  },
-];
+import {
+  audiences,
+  businessTypes,
+  commonProblems,
+  districts,
+  homeFaq,
+  processSteps,
+  reasons,
+  recentWorks,
+} from "@/data/home";
 
 export default function Home() {
-  const homeSchema = {
+  const homeServices = services.filter((service) => service.audience === "home");
+  const businessServices = services.filter(
+    (service) => service.audience === "business",
+  );
+  const schema = {
     "@context": "https://schema.org",
-    "@type": "ItemList",
-    name: "Услуги мастеров по дому в Алматы",
-    itemListElement: services.map((service, index) => ({
-      "@type": "ListItem",
-      position: index + 1,
-      url: `${siteConfig.siteUrl}/${service.slug}`,
-      name: service.name,
-    })),
+    "@graph": [
+      {
+        "@type": "ItemList",
+        name: "Услуги Allservice в Алматы",
+        itemListElement: services.map((service, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          url: `${siteConfig.siteUrl}/${service.slug}`,
+          name: service.name,
+        })),
+      },
+      {
+        "@type": "FAQPage",
+        mainEntity: homeFaq.map((item) => ({
+          "@type": "Question",
+          name: item.question,
+          acceptedAnswer: { "@type": "Answer", text: item.answer },
+        })),
+      },
+    ],
   };
 
   return (
     <>
-      <JsonLd data={homeSchema} />
+      <JsonLd data={schema} />
       <section className="hero">
-        <div className="container hero-grid">
-          <div className="hero-copy">
-            <h1>Ремонт и мастера по дому в Алматы</h1>
-            <p className="hero-lead">
-              Найдем причину, согласуем стоимость до начала работ и зафиксируем
-              условия гарантии.
-            </p>
-            <div className="hero-actions">
-              <Link href="#request" className="button button-primary">
-                Вызвать мастера
-                <ArrowRight size={19} aria-hidden="true" />
-              </Link>
-              <TrackedLink
-                href={getWhatsappUrl()}
-                event="whatsapp_click"
-                label="hero"
-                target="_blank"
-                className="text-link"
-              >
-                <MessageCircle size={20} aria-hidden="true" />
-                Написать в WhatsApp
-              </TrackedLink>
-            </div>
-            <ul className="hero-proof" aria-label="Преимущества сервиса">
-              <li>
-                <Calculator aria-hidden="true" />
-                <span>Стоимость до начала работ</span>
-              </li>
-              <li>
-                <FileCheck2 aria-hidden="true" />
-                <span>Условия гарантии в заказе</span>
-              </li>
-              <li>
-                <MapPin aria-hidden="true" />
-                <span>Выезд по Алматы</span>
-              </li>
-            </ul>
+        <Image
+          src="/images/hero-technician.webp"
+          alt="Мастер Allservice приехал для ремонта техники в Алматы"
+          fill
+          priority
+          sizes="100vw"
+          className="hero-background"
+        />
+        <div className="hero-shade" aria-hidden="true" />
+        <div className="container hero-content">
+          <h1>Ремонт бытовой и коммерческой техники в Алматы</h1>
+          <p>
+            Ремонтируем и устанавливаем технику в квартирах, частных домах,
+            ресторанах, кафе и профессиональных кухнях. Работаем со встроенным,
+            премиальным и коммерческим оборудованием.
+          </p>
+          <div className="hero-actions">
+            <Link href="#request" className="button button-primary">
+              Оставить заявку
+              <ArrowRight size={18} aria-hidden="true" />
+            </Link>
+            <TrackedLink
+              href={siteConfig.phoneHref}
+              event="call_click"
+              label="hero"
+              className="button button-secondary"
+            >
+              <Phone size={18} aria-hidden="true" />
+              Позвонить
+            </TrackedLink>
           </div>
-          <div className="hero-media">
-            <Image
-              src="/images/hero-technician.webp"
-              alt="Выездной мастер с инструментами в квартире"
-              width={1536}
-              height={1024}
-              priority
-              sizes="(max-width: 900px) 100vw, 48vw"
-            />
-            <span className="image-caption">Выездной сервис по Алматы</span>
+          <ul className="hero-proof">
+            <li>
+              <Check aria-hidden="true" />
+              Диагностика до ремонта
+            </li>
+            <li>
+              <Check aria-hidden="true" />
+              Согласование работ заранее
+            </li>
+            <li>
+              <Check aria-hidden="true" />
+              Выезд по Алматы
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section className="request-band" id="request">
+        <div className="container request-band-grid">
+          <div>
+            <span className="section-label">Быстрая заявка</span>
+            <h2>Опишите технику и проблему</h2>
+            <p>
+              Чем точнее модель и симптомы, тем лучше мастер подготовится к
+              выезду.
+            </p>
+          </div>
+          <LeadForm compact />
+        </div>
+      </section>
+
+      <section className="section audience-section">
+        <div className="container">
+          <div className="section-heading centered-heading">
+            <span className="section-label">Два направления</span>
+            <h2>Один сервис для дома и бизнеса</h2>
+            <p>
+              Выберите подходящий раздел. Каждая услуга ведет на отдельную
+              страницу с конкретными неисправностями и видами работ.
+            </p>
+          </div>
+          <div className="audience-grid">
+            {audiences.map((audience) => {
+              const Icon = audience.icon;
+              const list =
+                audience.id === "home-services"
+                  ? homeServices.slice(0, 6)
+                  : businessServices.slice(0, 6);
+              return (
+                <div className="audience-column" id={audience.id} key={audience.id}>
+                  <div className="audience-heading">
+                    <Icon aria-hidden="true" />
+                    <div>
+                      <h3>{audience.title}</h3>
+                      <p>{audience.text}</p>
+                    </div>
+                  </div>
+                  <div className="audience-services">
+                    {list.map((service) => (
+                      <ServiceCard service={service} key={service.slug} />
+                    ))}
+                  </div>
+                  <Link href="/services" className="inline-link">
+                    Смотреть все услуги
+                    <ArrowRight size={17} aria-hidden="true" />
+                  </Link>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      <section className="section services-section" id="services">
-        <div className="container">
-          <div className="section-heading">
-            <h2>Чем можем помочь</h2>
+      <section className="section problem-section">
+        <div className="container problem-layout">
+          <div>
+            <span className="section-label">Когда обращаться</span>
+            <h2>Не ждите, пока небольшая проблема остановит технику</h2>
             <p>
-              Для каждой услуги подготовлена отдельная страница с типовыми
-              неисправностями и условиями работы.
+              Своевременная диагностика помогает понять, нужен ли ремонт,
+              обслуживание или замена отдельного узла.
             </p>
           </div>
-          <div className="service-list">
-            {services.map((service) => (
-              <article className="service-row" key={service.slug}>
-                <div className="service-icon">
-                  <ServiceIcon name={service.icon} />
-                </div>
-                <div>
-                  <h3>{service.name}</h3>
-                  <p>{service.description}</p>
-                  <Link href={`/${service.slug}`} className="inline-link">
-                    Подробнее
-                    <ArrowRight size={16} aria-hidden="true" />
-                  </Link>
-                </div>
-              </article>
+          <ul className="problem-list">
+            {commonProblems.map((problem) => (
+              <li key={problem}>
+                <Check aria-hidden="true" />
+                {problem}
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </section>
 
       <section className="section process-section" id="process">
         <div className="container">
           <div className="section-heading">
-            <h2>Как проходит заказ</h2>
-            <p>Понятный процесс без начала работ до согласования цены.</p>
+            <div>
+              <span className="section-label section-label-light">
+                Порядок работы
+              </span>
+              <h2>От заявки до проверенного результата</h2>
+            </div>
+            <p>
+              Без ремонта наугад: сначала выясняем задачу, затем согласуем
+              решение.
+            </p>
           </div>
           <ol className="process-list">
-            {process.map((step, index) => {
+            {processSteps.map((step, index) => {
               const Icon = step.icon;
               return (
                 <li key={step.title}>
-                  <span className="process-number">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
+                  <span>{String(index + 1).padStart(2, "0")}</span>
                   <Icon aria-hidden="true" />
                   <h3>{step.title}</h3>
                   <p>{step.text}</p>
@@ -204,136 +212,103 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section price-section">
-        <div className="container price-grid">
-          <div className="price-copy">
-            <h2>Цена известна до начала работ</h2>
-            <p>
-              Мы не публикуем выдуманные цены «от». Итог зависит от
-              неисправности, модели, деталей и сложности доступа.
-            </p>
-            <ul className="check-list">
-              <li>
-                <CheckCircle2 aria-hidden="true" />
-                Диагностика и объяснение причины
-              </li>
-              <li>
-                <CheckCircle2 aria-hidden="true" />
-                Согласование работы и деталей
-              </li>
-              <li>
-                <CheckCircle2 aria-hidden="true" />
-                Ремонт только после вашего подтверждения
-              </li>
-            </ul>
-            <Link href="/prices" className="inline-link">
-              Как формируется стоимость
-              <ArrowRight size={17} aria-hidden="true" />
-            </Link>
-          </div>
-          <div className="request-card" id="request">
-            <div>
-              <h2>Опишите задачу</h2>
-              <p>
-                Заявка откроется в WhatsApp. Проверьте сообщение и отправьте его
-                оператору.
-              </p>
-            </div>
-            <LeadForm compact />
-          </div>
-        </div>
-      </section>
-
-      <section className="section trust-section">
-        <div className="container trust-grid">
-          <div className="trust-media">
-            <Image
-              src="/images/team-repair.webp"
-              alt="Два мастера диагностируют стиральную машину"
-              width={1672}
-              height={941}
-              sizes="(max-width: 900px) 100vw, 55vw"
-            />
-          </div>
-          <div className="trust-copy">
-            <h2>Работа, которую можно проверить</h2>
-            <div className="trust-points">
-              <div>
-                <BadgeCheck aria-hidden="true" />
-                <h3>Один мастер отвечает за заказ</h3>
-                <p>
-                  Вы знаете, кто выполняет работу и к кому обращаться по
-                  результату.
-                </p>
-              </div>
-              <div>
-                <Calculator aria-hidden="true" />
-                <h3>Цена согласуется заранее</h3>
-                <p>
-                  Мастер начинает работу после того, как вы подтвердили объем и
-                  стоимость.
-                </p>
-              </div>
-              <div>
-                <FileCheck2 aria-hidden="true" />
-                <h3>Условия фиксируются</h3>
-                <p>
-                  Состав работы и гарантийные условия должны быть понятны до
-                  оплаты.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="section tasks-section">
+      <section className="section works-section" id="works">
         <div className="container">
-          <div className="section-heading split-heading">
+          <div className="section-heading">
             <div>
-              <h2>Типовые задачи</h2>
-              <p>
-                Примеры обращений, для которых можно вызвать выездного мастера.
-              </p>
+              <span className="section-label">Примеры задач</span>
+              <h2>Недавние работы</h2>
             </div>
-            <Link href="/services" className="inline-link">
-              Все услуги
-              <ArrowRight size={17} aria-hidden="true" />
-            </Link>
+            <p>
+              Показываем суть неисправности и выполненную работу. Цена зависит
+              от диагностики, модели и необходимых деталей.
+            </p>
           </div>
-          <div className="task-list">
-            <article>
-              <span>Бытовая техника</span>
-              <h3>Машинка не сливает воду</h3>
-              <p>
-                Проверим сливной тракт, насос, фильтр и управление. Стоимость
-                зависит от найденной причины.
-              </p>
-            </article>
-            <article>
-              <span>Сантехника</span>
-              <h3>Протекает соединение под раковиной</h3>
-              <p>
-                Определим источник течи и предложим ремонт или замену
-                неисправного элемента.
-              </p>
-            </article>
-            <article>
-              <span>Электрика</span>
-              <h3>Перестала работать розетка</h3>
-              <p>
-                Проверим питание, контакты и защитную автоматику перед заменой
-                оборудования.
-              </p>
-            </article>
+          <div className="works-layout">
+            <div className="works-media">
+              <Image
+                src="/images/team-repair.webp"
+                alt="Мастера Allservice диагностируют стиральную машину"
+                width={1672}
+                height={941}
+                sizes="(max-width: 900px) 100vw, 50vw"
+              />
+            </div>
+            <div className="works-list">
+              {recentWorks.map((work, index) => (
+                <article key={work.title}>
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                  <div>
+                    <small>{work.type}</small>
+                    <h3>{work.title}</h3>
+                    <p>
+                      <strong>Проблема:</strong> {work.problem}
+                    </p>
+                    <p>
+                      <strong>Что сделали:</strong> {work.result}
+                    </p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section reasons-section">
+        <div className="container reasons-layout">
+          <div className="reasons-intro">
+            <ShieldCheck aria-hidden="true" />
+            <span className="section-label">Почему Allservice</span>
+            <h2>Беремся за задачи, где важны аккуратность и понимание техники</h2>
+            <p>
+              Особенно при работе со встроенным, премиальным и коммерческим
+              оборудованием.
+            </p>
+          </div>
+          <div className="reasons-grid">
+            {reasons.map((reason, index) => (
+              <article key={reason.title}>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <h3>{reason.title}</h3>
+                <p>{reason.text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section clients-section">
+        <div className="container">
+          <div className="section-heading centered-heading">
+            <span className="section-label">Кому помогаем</span>
+            <h2>Частным клиентам и предприятиям Алматы</h2>
+          </div>
+          <div className="client-types">
+            {businessTypes.map((item) => {
+              const Icon = item.icon;
+              return (
+                <div key={item.label}>
+                  <Icon aria-hidden="true" />
+                  <span>{item.label}</span>
+                </div>
+              );
+            })}
+          </div>
+          <div className="districts">
+            <strong>Районы выезда:</strong>
+            {districts.map((district) => (
+              <span key={district}>{district}</span>
+            ))}
           </div>
         </div>
       </section>
 
       <section className="section faq-section">
-        <div className="container faq-grid">
+        <div className="container faq-layout">
           <div>
-            <h2>Часто задаваемые вопросы</h2>
+            <span className="section-label">Вопросы</span>
+            <h2>Что важно знать до вызова мастера</h2>
             <p>
               Не нашли ответ? Позвоните по номеру{" "}
               <a href={siteConfig.phoneHref}>{siteConfig.phoneDisplay}</a>.
@@ -353,18 +328,18 @@ export default function Home() {
       <section className="final-cta">
         <div className="container final-cta-inner">
           <div>
-            <h2>Нужен мастер?</h2>
-            <p>Позвоните или отправьте задачу в WhatsApp.</p>
+            <h2>Нужен ремонт или установка техники?</h2>
+            <p>Расскажите, что произошло, и мы уточним следующий шаг.</p>
           </div>
           <div className="final-cta-actions">
             <TrackedLink
               href={siteConfig.phoneHref}
               event="call_click"
               label="final_cta"
-              className="final-phone"
+              className="button button-dark"
             >
-              <Phone aria-hidden="true" />
-              {siteConfig.phoneDisplay}
+              <Phone size={18} aria-hidden="true" />
+              Позвонить
             </TrackedLink>
             <TrackedLink
               href={getWhatsappUrl()}
@@ -373,8 +348,8 @@ export default function Home() {
               target="_blank"
               className="button button-primary"
             >
-              <MessageCircle size={19} aria-hidden="true" />
-              WhatsApp
+              <MessageCircle size={18} aria-hidden="true" />
+              Написать в WhatsApp
             </TrackedLink>
           </div>
         </div>
@@ -382,4 +357,3 @@ export default function Home() {
     </>
   );
 }
-

@@ -37,13 +37,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: service.title,
-    description: service.description,
+    description: service.metaDescription,
     alternates: {
       canonical: `/${service.slug}`,
     },
     openGraph: {
       title: service.title,
-      description: service.description,
+      description: service.metaDescription,
       url: `/${service.slug}`,
       type: "website",
       images: ["/opengraph-image"],
@@ -60,6 +60,9 @@ export default async function ServicePage({ params }: Props) {
   }
 
   const whatsappMessage = `Здравствуйте! Нужна услуга: ${service.name.toLowerCase()}. Я нахожусь в Алматы.`;
+  const relatedServices = service.relatedSlugs
+    .map((relatedSlug) => serviceBySlug.get(relatedSlug))
+    .filter((item) => item !== undefined);
   const schema = {
     "@context": "https://schema.org",
     "@graph": [
@@ -99,6 +102,17 @@ export default async function ServicePage({ params }: Props) {
           },
         ],
       },
+      {
+        "@type": "FAQPage",
+        mainEntity: service.faq.map((item) => ({
+          "@type": "Question",
+          name: item.question,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: item.answer,
+          },
+        })),
+      },
     ],
   };
 
@@ -115,12 +129,12 @@ export default async function ServicePage({ params }: Props) {
             <span>{service.shortName}</span>
           </nav>
           <div className="service-hero-grid">
-            <div>
+            <div className="service-hero-copy">
               <div className="service-page-icon">
                 <ServiceIcon name={service.icon} size={42} />
               </div>
               <h1>{service.title}</h1>
-              <p>{service.heroText}</p>
+              <p>{service.intro}</p>
               <div className="hero-actions">
                 <Link href="#service-request" className="button button-primary">
                   Вызвать мастера
@@ -140,11 +154,11 @@ export default async function ServicePage({ params }: Props) {
               <div className="service-trust-row">
                 <span>
                   <Calculator aria-hidden="true" />
-                  Цена до начала работ
+                  Работы согласуем заранее
                 </span>
                 <span>
                   <ShieldCheck aria-hidden="true" />
-                  Условия гарантии
+                  Условия гарантии фиксируем
                 </span>
               </div>
             </div>
@@ -161,6 +175,11 @@ export default async function ServicePage({ params }: Props) {
       </section>
 
       <section className="section">
+        <div className="container service-intro">
+          <span className="section-label">Об услуге</span>
+          <h2>{service.name}: диагностика, ремонт и проверка результата</h2>
+          <p>{service.description}</p>
+        </div>
         <div className="container two-column-section">
           <div>
             <div className="section-heading">
@@ -215,6 +234,30 @@ export default async function ServicePage({ params }: Props) {
         </div>
       </section>
 
+      <section className="section related-section">
+        <div className="container">
+          <div className="section-heading">
+            <div>
+              <span className="section-label">Связанные услуги</span>
+              <h2>Другие работы с техникой и оборудованием</h2>
+            </div>
+            <p>
+              Если проблема затрагивает несколько устройств, укажите это в
+              заявке. Так мастер сможет лучше подготовиться к выезду.
+            </p>
+          </div>
+          <div className="related-grid">
+            {relatedServices.map((related) => (
+              <Link href={`/${related.slug}`} key={related.slug}>
+                <ServiceIcon name={related.icon} size={25} />
+                <span>{related.name}</span>
+                <ArrowRight size={18} aria-hidden="true" />
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="section faq-section">
         <div className="container faq-grid">
           <div>
@@ -246,10 +289,10 @@ export default async function ServicePage({ params }: Props) {
               href={siteConfig.phoneHref}
               event="call_click"
               label={`service_final_${service.slug}`}
-              className="final-phone"
+              className="button button-dark"
             >
-              <Phone aria-hidden="true" />
-              {siteConfig.phoneDisplay}
+              <Phone size={18} aria-hidden="true" />
+              Позвонить
             </TrackedLink>
             <TrackedLink
               href={getWhatsappUrl(whatsappMessage)}
@@ -267,4 +310,3 @@ export default async function ServicePage({ params }: Props) {
     </>
   );
 }
-

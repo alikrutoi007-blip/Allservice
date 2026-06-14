@@ -1,44 +1,69 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
-import { ServiceIcon } from "@/components/service-icon";
+import { ServiceCard } from "@/components/service-card";
 import { services } from "@/data/services";
 
 export const metadata: Metadata = {
-  title: "Услуги мастеров в Алматы",
+  title: "Ремонт и установка техники в Алматы — все услуги",
   description:
-    "Ремонт бытовой техники, сантехника, электрика и кондиционеров с выездом по Алматы.",
+    "Все услуги Allservice: ремонт и установка бытовой техники, холодильного, теплового, моечного и барного оборудования в Алматы.",
   alternates: { canonical: "/services" },
 };
 
 export default function ServicesPage() {
+  const homeServices = services.filter((service) => service.audience === "home");
+  const businessServices = services.filter(
+    (service) => service.audience === "business",
+  );
+
   return (
-    <section className="inner-page">
-      <div className="container">
-        <div className="inner-page-heading">
-          <h1>Услуги мастеров в Алматы</h1>
-          <p>
-            Выберите задачу. На каждой странице указаны типовые неисправности,
-            порядок работы и факторы стоимости.
-          </p>
+    <>
+      <section className="inner-page">
+        <div className="container">
+          <div className="inner-page-heading">
+            <span className="section-label">Каталог Allservice</span>
+            <h1>Ремонт и установка техники в Алматы</h1>
+            <p>
+              Отдельные направления для дома и бизнеса. Каждая услуга ведет на
+              профильную страницу с типичными неисправностями, видами работ и
+              формой заявки.
+            </p>
+          </div>
         </div>
-        <div className="catalog-grid">
-          {services.map((service) => (
-            <article key={service.slug}>
-              <div className="service-icon">
-                <ServiceIcon name={service.icon} />
-              </div>
-              <h2>{service.name}</h2>
-              <p>{service.description}</p>
-              <Link href={`/${service.slug}`} className="inline-link">
-                Открыть страницу
-                <ArrowRight size={17} aria-hidden="true" />
-              </Link>
-            </article>
-          ))}
+      </section>
+
+      <section className="section catalog-section">
+        <div className="container catalog-cluster">
+          <div className="catalog-heading">
+            <span className="section-label">Для дома</span>
+            <h2>Бытовая техника</h2>
+            <p>
+              Диагностика, ремонт и установка техники в квартирах и частных
+              домах.
+            </p>
+          </div>
+          <div className="catalog-grid">
+            {homeServices.map((service) => (
+              <ServiceCard service={service} key={service.slug} />
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+
+        <div className="container catalog-cluster">
+          <div className="catalog-heading">
+            <span className="section-label">Для бизнеса</span>
+            <h2>Ресторанное и коммерческое оборудование</h2>
+            <p>
+              Холодильное, тепловое, моечное и барное оборудование ресторанов,
+              кафе, магазинов и профессиональных кухонь.
+            </p>
+          </div>
+          <div className="catalog-grid">
+            {businessServices.map((service) => (
+              <ServiceCard service={service} key={service.slug} />
+            ))}
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
-

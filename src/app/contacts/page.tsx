@@ -5,9 +5,9 @@ import { TrackedLink } from "@/components/tracked-links";
 import { getWhatsappUrl, siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
-  title: "Контакты сервисной службы в Алматы",
+  title: "Контакты Allservice в Алматы",
   description:
-    "Телефон и WhatsApp выездной сервисной службы Бәрі Жөн в Алматы.",
+    "Телефон и WhatsApp Allservice для ремонта и установки бытовой и коммерческой техники в Алматы.",
   alternates: { canonical: "/contacts" },
 };
 
@@ -17,10 +17,11 @@ export default function ContactsPage() {
       <div className="container contact-grid">
         <div>
           <div className="inner-page-heading">
-            <h1>Контакты</h1>
+            <h1>Контакты Allservice</h1>
             <p>
-              Работаем в формате выездной службы. Возможность и время выезда по
-              вашему адресу подтвердит оператор.
+              Принимаем обращения по ремонту и установке бытовой и коммерческой
+              техники и оборудования. Возможность выезда по вашему адресу
+              уточняется после описания задачи.
             </p>
           </div>
           <div className="contact-list">
@@ -43,7 +44,7 @@ export default function ContactsPage() {
             >
               <MessageCircle aria-hidden="true" />
               <span>
-                <small>Мессенджер</small>
+                <small>Сообщения</small>
                 WhatsApp
               </span>
             </TrackedLink>
@@ -56,14 +57,17 @@ export default function ContactsPage() {
             </div>
           </div>
           <p className="legal-placeholder">
-            Перед публикацией добавьте реквизиты ИП/ТОО и фактический адрес,
-            если по нему принимаются клиенты.
+            Выезд выполняется по Алматы и ближайшим районам. При обращении
+            укажите тип оборудования, адрес и кратко опишите задачу.
           </p>
         </div>
         <div className="request-card">
           <div>
-            <h2>Отправить задачу</h2>
-            <p>Сообщение откроется в WhatsApp для проверки и отправки.</p>
+            <h2>Описать задачу</h2>
+            <p>
+              Заполните форму, проверьте подготовленное сообщение и отправьте
+              его через WhatsApp.
+            </p>
           </div>
           <LeadForm compact />
         </div>
@@ -71,4 +75,3 @@ export default function ContactsPage() {
     </section>
   );
 }
-

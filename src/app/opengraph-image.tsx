@@ -1,6 +1,7 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Бәрі Жөн — ремонт и мастера по дому в Алматы";
+export const alt =
+  "Allservice — ремонт бытовой и коммерческой техники в Алматы";
 export const size = {
   width: 1200,
   height: 630,
@@ -18,7 +19,7 @@ export default function OpenGraphImage() {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: 72,
-          background: "#102a43",
+          background: "#111820",
           color: "#ffffff",
           fontFamily: "Arial, sans-serif",
         }}
@@ -27,12 +28,12 @@ export default function OpenGraphImage() {
           style={{
             display: "flex",
             alignItems: "center",
-            color: "#00b8a0",
+            color: "#ef5b2a",
             fontSize: 34,
             fontWeight: 800,
           }}
         >
-          Бәрі Жөн
+          Allservice
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 26 }}>
           <div
@@ -44,10 +45,10 @@ export default function OpenGraphImage() {
               letterSpacing: -2,
             }}
           >
-            Ремонт и мастера по дому в Алматы
+            Ремонт бытовой и коммерческой техники в Алматы
           </div>
           <div style={{ fontSize: 31, color: "#c6d7e7" }}>
-            Стоимость согласуем до начала работ
+            Для квартир, частных домов, ресторанов и профессиональных кухонь
           </div>
         </div>
         <div
@@ -58,11 +59,10 @@ export default function OpenGraphImage() {
           }}
         >
           <span>+7 708 181 9728</span>
-          <span style={{ color: "#00b8a0" }}>Выезд по Алматы</span>
+          <span style={{ color: "#ef5b2a" }}>Выезд по Алматы</span>
         </div>
       </div>
     ),
     size,
   );
 }
-

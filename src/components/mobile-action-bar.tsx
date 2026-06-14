@@ -1,7 +1,6 @@
 "use client";
 
-import Link from "next/link";
-import { MessageCircle, Phone, Wrench } from "lucide-react";
+import { MessageCircle, Phone } from "lucide-react";
 import { getWhatsappUrl, siteConfig } from "@/config/site";
 import { trackEvent } from "@/lib/analytics";
 
@@ -12,23 +11,20 @@ export function MobileActionBar() {
         href={siteConfig.phoneHref}
         onClick={() => trackEvent("call_click", { placement: "mobile_bar" })}
       >
-        <Phone size={20} aria-hidden="true" />
+        <Phone size={19} aria-hidden="true" />
         Позвонить
       </a>
       <a
         href={getWhatsappUrl()}
         target="_blank"
         rel="noopener noreferrer"
-        onClick={() => trackEvent("whatsapp_click", { placement: "mobile_bar" })}
+        onClick={() =>
+          trackEvent("whatsapp_click", { placement: "mobile_bar" })
+        }
       >
-        <MessageCircle size={20} aria-hidden="true" />
+        <MessageCircle size={19} aria-hidden="true" />
         WhatsApp
       </a>
-      <Link href="/#request">
-        <Wrench size={20} aria-hidden="true" />
-        Вызвать
-      </Link>
     </nav>
   );
 }
-
