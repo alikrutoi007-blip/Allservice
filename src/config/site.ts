@@ -3,9 +3,9 @@ export const siteConfig = {
   shortName: "Allservice",
   description:
     "Ремонт и установка бытовой и коммерческой техники в Алматы для квартир, частных домов, ресторанов, кафе и профессиональных кухонь.",
-  phoneDisplay: "+7 708 181 9728",
-  phoneHref: "tel:+77081819728",
-  phoneDigits: "77081819728",
+  phoneDisplay: "+7 777 342 6900",
+  phoneHref: "tel:+77773426900",
+  phoneDigits: "77773426900",
   city: "Алматы",
   serviceArea: "Алматы и ближайшие районы",
   siteUrl:

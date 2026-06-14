@@ -58,7 +58,7 @@ export default function OpenGraphImage() {
             fontSize: 29,
           }}
         >
-          <span>+7 708 181 9728</span>
+          <span>+7 777 342 6900</span>
           <span style={{ color: "#ef5b2a" }}>Выезд по Алматы</span>
         </div>
       </div>
