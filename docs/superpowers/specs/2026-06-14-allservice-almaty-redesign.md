@@ -7,6 +7,7 @@ Turn the existing Next.js website into a production-ready lead-generation site f
 ## Brand And Positioning
 
 - Brand name: **Allservice**
+- Site language: Russian (`ru-KZ`). All navigation, interface controls, forms, validation messages, service content, legal pages, metadata, structured-data descriptions, and conversion messages must be written in natural Russian. The Latin spelling `Allservice` is used only as the brand name.
 - Primary offer: **Ремонт бытовой и коммерческой техники в Алматы**
 - Audience:
   - apartment residents, private homeowners, and landlords;
@@ -181,6 +182,7 @@ Each equipment category receives a dedicated page with:
 ## SEO And Performance
 
 - Rename brand metadata from `Бәрі Жөн` to `Allservice`.
+- Set the document language to Russian and use Russian-language titles, descriptions, Open Graph content, service names, FAQs, breadcrumbs, and structured-data text throughout the site.
 - Use the homepage H1 once.
 - Keep unique metadata and canonical URLs on every service page.
 - Build separate residential and commercial content clusters with contextual internal linking.
