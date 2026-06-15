@@ -31,6 +31,7 @@ yarn-error.log*
 .pnpm-debug.log*
 .codex-dev-*.log
 .codex-prod-*.log
+.codex-health-test-*.log
 
 # local visual QA artifacts
 /design/qa/
