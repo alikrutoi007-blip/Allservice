@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const alt =
-  "Allservice — ремонт бытовой и коммерческой техники в Алматы";
+  "Allservice — ремонт техники в Алматы и Алматинской области";
 export const size = {
   width: 1200,
   height: 630,
@@ -45,7 +45,7 @@ export default function OpenGraphImage() {
               letterSpacing: -2,
             }}
           >
-            Ремонт бытовой и коммерческой техники в Алматы
+            Ремонт бытовой и коммерческой техники в Алматы и Алматинской области
           </div>
           <div style={{ fontSize: 31, color: "#c6d7e7" }}>
             Для квартир, частных домов, ресторанов и профессиональных кухонь
@@ -59,7 +59,7 @@ export default function OpenGraphImage() {
           }}
         >
           <span>+7 777 342 6900</span>
-          <span style={{ color: "#ef5b2a" }}>Выезд по Алматы</span>
+          <span style={{ color: "#ef5b2a" }}>Выезд по Алматы и области</span>
         </div>
       </div>
     ),

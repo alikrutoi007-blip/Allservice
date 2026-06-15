@@ -3,9 +3,9 @@ import { ServiceCard } from "@/components/service-card";
 import { services } from "@/data/services";
 
 export const metadata: Metadata = {
-  title: "Ремонт и установка техники в Алматы — все услуги",
+  title: "Ремонт техники в Алматы и области — все услуги",
   description:
-    "Все услуги Allservice: ремонт и установка бытовой техники, холодильного, теплового, моечного и барного оборудования в Алматы.",
+    "Все услуги Allservice: ремонт и установка бытовой техники, холодильного, теплового, моечного и барного оборудования в Алматы и Алматинской области.",
   alternates: { canonical: "/services" },
 };
 
@@ -21,7 +21,7 @@ export default function ServicesPage() {
         <div className="container">
           <div className="inner-page-heading">
             <span className="section-label">Каталог Allservice</span>
-            <h1>Ремонт и установка техники в Алматы</h1>
+            <h1>Ремонт и установка техники в Алматы и Алматинской области</h1>
             <p>
               Отдельные направления для дома и бизнеса. Каждая услуга ведет на
               профильную страницу с типичными неисправностями, видами работ и

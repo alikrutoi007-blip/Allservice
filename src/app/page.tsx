@@ -34,7 +34,7 @@ export default function Home() {
     "@graph": [
       {
         "@type": "ItemList",
-        name: "Услуги Allservice в Алматы",
+        name: "Услуги Allservice в Алматы и Алматинской области",
         itemListElement: services.map((service, index) => ({
           "@type": "ListItem",
           position: index + 1,
@@ -59,7 +59,7 @@ export default function Home() {
       <section className="hero">
         <Image
           src="/images/hero-technician.webp"
-          alt="Мастер Allservice приехал для ремонта техники в Алматы"
+          alt="Мастер Allservice приехал для ремонта техники в Алматы и Алматинской области"
           fill
           priority
           sizes="100vw"
@@ -67,11 +67,11 @@ export default function Home() {
         />
         <div className="hero-shade" aria-hidden="true" />
         <div className="container hero-content">
-          <h1>Ремонт бытовой и коммерческой техники в Алматы</h1>
+          <h1>Ремонт бытовой и коммерческой техники в Алматы и Алматинской области</h1>
           <p>
             Ремонтируем и устанавливаем технику в квартирах, частных домах,
-            ресторанах, кафе и профессиональных кухнях. Работаем со встроенным,
-            премиальным и коммерческим оборудованием.
+            ресторанах, кафе и профессиональных кухнях. Работаем с премиальным
+            и коммерческим оборудованием.
           </p>
           <div className="hero-actions">
             <Link href="#request" className="button button-primary">
@@ -99,7 +99,7 @@ export default function Home() {
             </li>
             <li>
               <Check aria-hidden="true" />
-              Выезд по Алматы
+              Выезд по Алматы и области
             </li>
           </ul>
         </div>
@@ -262,8 +262,7 @@ export default function Home() {
             <span className="section-label">Почему Allservice</span>
             <h2>Беремся за задачи, где важны аккуратность и понимание техники</h2>
             <p>
-              Особенно при работе со встроенным, премиальным и коммерческим
-              оборудованием.
+              Особенно при работе с премиальным и коммерческим оборудованием.
             </p>
           </div>
           <div className="reasons-grid">
@@ -282,7 +281,7 @@ export default function Home() {
         <div className="container">
           <div className="section-heading centered-heading">
             <span className="section-label">Кому помогаем</span>
-            <h2>Частным клиентам и предприятиям Алматы</h2>
+            <h2>Частным клиентам и предприятиям Алматы и Алматинской области</h2>
           </div>
           <div className="client-types">
             {businessTypes.map((item) => {

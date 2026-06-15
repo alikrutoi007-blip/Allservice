@@ -59,7 +59,7 @@ export default async function ServicePage({ params }: Props) {
     notFound();
   }
 
-  const whatsappMessage = `Здравствуйте! Нужна услуга: ${service.name.toLowerCase()}. Я нахожусь в Алматы.`;
+  const whatsappMessage = `Здравствуйте! Нужна услуга: ${service.name.toLowerCase()}. Адрес находится в Алматы или Алматинской области.`;
   const relatedServices = service.relatedSlugs
     .map((relatedSlug) => serviceBySlug.get(relatedSlug))
     .filter((item) => item !== undefined);

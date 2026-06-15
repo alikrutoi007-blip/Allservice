@@ -10,13 +10,13 @@ import "./globals.css";
 const brandName = "Allservice";
 const siteUrl = siteConfig.siteUrl.replace(/\/$/, "");
 const siteDescription =
-  "Ремонт и установка бытовой и коммерческой техники и оборудования в Алматы.";
+  "Ремонт и установка бытовой и коммерческой техники и оборудования в Алматы и Алматинской области.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   applicationName: brandName,
   title: {
-    default: "Allservice — ремонт и установка техники в Алматы",
+    default: "Allservice — ремонт техники в Алматы и области",
     template: "%s | Allservice",
   },
   description: siteDescription,
@@ -31,20 +31,20 @@ export const metadata: Metadata = {
     type: "website",
     locale: "ru_KZ",
     siteName: brandName,
-    title: "Allservice — ремонт и установка техники в Алматы",
+    title: "Allservice — ремонт техники в Алматы и области",
     description: siteDescription,
     images: [
       {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Allservice — ремонт и установка техники в Алматы",
+        alt: "Allservice — ремонт техники в Алматы и Алматинской области",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Allservice — ремонт и установка техники в Алматы",
+    title: "Allservice — ремонт техники в Алматы и области",
     description: siteDescription,
     images: ["/opengraph-image"],
   },
@@ -82,7 +82,7 @@ const organizationSchema = {
       ],
       areaServed: {
         "@type": "City",
-        name: "Алматы",
+        name: "Алматы и Алматинская область",
       },
       parentOrganization: {
         "@id": `${siteUrl}/#organization`,
