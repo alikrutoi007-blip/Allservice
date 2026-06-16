@@ -3,7 +3,7 @@
 import Script from "next/script";
 import { useEffect, useState } from "react";
 
-const STORAGE_KEY = "allservice-analytics-consent";
+const STORAGE_KEY = "mastertut-analytics-consent";
 
 function GoogleTagManager({ id }: { id: string }) {
   return (

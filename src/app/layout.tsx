@@ -7,7 +7,7 @@ import { MobileActionBar } from "@/components/mobile-action-bar";
 import { siteConfig } from "@/config/site";
 import "./globals.css";
 
-const brandName = "Allservice";
+const brandName = "MasterTut";
 const siteUrl = siteConfig.siteUrl.replace(/\/$/, "");
 const siteDescription =
   "Ремонт и установка бытовой и коммерческой техники и оборудования в Алматы и Алматинской области.";
@@ -16,8 +16,8 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   applicationName: brandName,
   title: {
-    default: "Allservice — ремонт техники в Алматы и области",
-    template: "%s | Allservice",
+    default: "MasterTut — ремонт техники в Алматы и области",
+    template: "%s | MasterTut",
   },
   description: siteDescription,
   alternates: {
@@ -31,20 +31,20 @@ export const metadata: Metadata = {
     type: "website",
     locale: "ru_KZ",
     siteName: brandName,
-    title: "Allservice — ремонт техники в Алматы и области",
+    title: "MasterTut — ремонт техники в Алматы и области",
     description: siteDescription,
     images: [
       {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Allservice — ремонт техники в Алматы и Алматинской области",
+        alt: "MasterTut — ремонт техники в Алматы и Алматинской области",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Allservice — ремонт техники в Алматы и области",
+    title: "MasterTut — ремонт техники в Алматы и области",
     description: siteDescription,
     images: ["/opengraph-image"],
   },

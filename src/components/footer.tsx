@@ -77,7 +77,7 @@ export function Footer() {
         </div>
       </div>
       <div className="container footer-bottom">
-        <span>© {new Date().getFullYear()} Allservice</span>
+        <span>© {new Date().getFullYear()} MasterTut</span>
         <span>{siteConfig.serviceArea}</span>
       </div>
     </footer>

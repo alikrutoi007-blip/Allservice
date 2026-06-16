@@ -34,7 +34,7 @@ export default function Home() {
     "@graph": [
       {
         "@type": "ItemList",
-        name: "Услуги Allservice в Алматы и Алматинской области",
+        name: "Услуги MasterTut в Алматы и Алматинской области",
         itemListElement: services.map((service, index) => ({
           "@type": "ListItem",
           position: index + 1,
@@ -59,7 +59,7 @@ export default function Home() {
       <section className="hero">
         <Image
           src="/images/hero-technician.webp"
-          alt="Мастер Allservice приехал для ремонта техники в Алматы и Алматинской области"
+          alt="Мастер MasterTut приехал для ремонта техники в Алматы и Алматинской области"
           fill
           priority
           sizes="100vw"
@@ -228,7 +228,7 @@ export default function Home() {
             <div className="works-media">
               <Image
                 src="/images/team-repair.webp"
-                alt="Мастера Allservice диагностируют стиральную машину"
+                alt="Мастера MasterTut диагностируют стиральную машину"
                 width={1672}
                 height={941}
                 sizes="(max-width: 900px) 100vw, 50vw"
@@ -259,7 +259,7 @@ export default function Home() {
         <div className="container reasons-layout">
           <div className="reasons-intro">
             <ShieldCheck aria-hidden="true" />
-            <span className="section-label">Почему Allservice</span>
+            <span className="section-label">Почему MasterTut</span>
             <h2>Беремся за задачи, где важны аккуратность и понимание техники</h2>
             <p>
               Особенно при работе с премиальным и коммерческим оборудованием.

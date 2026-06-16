@@ -5,9 +5,9 @@ import { TrackedLink } from "@/components/tracked-links";
 import { getWhatsappUrl, siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
-  title: "Контакты Allservice в Алматы и Алматинской области",
+  title: "Контакты MasterTut в Алматы и Алматинской области",
   description:
-    "Телефон и WhatsApp Allservice для ремонта и установки бытовой и коммерческой техники в Алматы и Алматинской области.",
+    "Телефон и WhatsApp MasterTut для ремонта и установки бытовой и коммерческой техники в Алматы и Алматинской области.",
   alternates: { canonical: "/contacts" },
 };
 
@@ -17,7 +17,7 @@ export default function ContactsPage() {
       <div className="container contact-grid">
         <div>
           <div className="inner-page-heading">
-            <h1>Контакты Allservice</h1>
+            <h1>Контакты MasterTut</h1>
             <p>
               Принимаем обращения по ремонту и установке бытовой и коммерческой
               техники и оборудования. Возможность выезда по вашему адресу

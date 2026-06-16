@@ -5,7 +5,7 @@ import { services } from "@/data/services";
 export const metadata: Metadata = {
   title: "Ремонт техники в Алматы и области — все услуги",
   description:
-    "Все услуги Allservice: ремонт и установка бытовой техники, холодильного, теплового, моечного и барного оборудования в Алматы и Алматинской области.",
+    "Все услуги MasterTut: ремонт и установка бытовой техники, холодильного, теплового, моечного и барного оборудования в Алматы и Алматинской области.",
   alternates: { canonical: "/services" },
 };
 
@@ -20,7 +20,7 @@ export default function ServicesPage() {
       <section className="inner-page">
         <div className="container">
           <div className="inner-page-heading">
-            <span className="section-label">Каталог Allservice</span>
+            <span className="section-label">Каталог MasterTut</span>
             <h1>Ремонт и установка техники в Алматы и Алматинской области</h1>
             <p>
               Отдельные направления для дома и бизнеса. Каждая услуга ведет на

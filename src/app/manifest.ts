@@ -2,8 +2,8 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Allservice — ремонт техники в Алматы и области",
-    short_name: "Allservice",
+    name: "MasterTut — ремонт техники в Алматы и области",
+    short_name: "MasterTut",
     description:
       "Ремонт и установка бытовой и коммерческой техники и оборудования в Алматы и Алматинской области.",
     lang: "ru-KZ",

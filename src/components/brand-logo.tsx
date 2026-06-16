@@ -6,13 +6,13 @@ export function BrandLogo({ inverse = false }: { inverse?: boolean }) {
     <Link
       href="/"
       className={`brand-logo ${inverse ? "brand-logo-inverse" : ""}`}
-      aria-label="Allservice — на главную"
+      aria-label="MasterTut — на главную"
     >
       <span className="brand-mark" aria-hidden="true">
         <Wrench size={20} strokeWidth={2.4} />
       </span>
       <span>
-        All<span>service</span>
+        Master<span>Tut</span>
       </span>
     </Link>
   );

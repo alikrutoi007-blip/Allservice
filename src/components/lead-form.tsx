@@ -51,7 +51,7 @@ export function LeadForm({
     const selected =
       services.find((item) => item.slug === service)?.name || "Не указана";
     const message = [
-      "Здравствуйте! Хочу оставить заявку в Allservice.",
+      "Здравствуйте! Хочу оставить заявку в MasterTut.",
       name ? `Имя: ${name}.` : "",
       `Услуга: ${selected}.`,
       `Телефон: ${phone}.`,

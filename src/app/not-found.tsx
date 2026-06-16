@@ -7,7 +7,7 @@ export default function NotFound() {
         <span className="error-code">404</span>
         <h1>Страница не найдена</h1>
         <p>
-          Проверьте адрес страницы или вернитесь на главную страницу Allservice.
+          Проверьте адрес страницы или вернитесь на главную страницу MasterTut.
         </p>
         <Link href="/" className="button button-primary">
           На главную

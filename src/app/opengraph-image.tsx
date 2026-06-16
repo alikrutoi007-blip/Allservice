@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const alt =
-  "Allservice — ремонт техники в Алматы и Алматинской области";
+  "MasterTut — ремонт техники в Алматы и Алматинской области";
 export const size = {
   width: 1200,
   height: 630,
@@ -33,7 +33,7 @@ export default function OpenGraphImage() {
             fontWeight: 800,
           }}
         >
-          Allservice
+          MasterTut
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 26 }}>
           <div
