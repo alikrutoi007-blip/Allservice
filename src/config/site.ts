@@ -6,6 +6,8 @@ export const siteConfig = {
   phoneDisplay: "+7 777 342 6900",
   phoneHref: "tel:+77773426900",
   phoneDigits: "77773426900",
+  whatsappDisplay: "+7 708 181 9728",
+  whatsappDigits: "77081819728",
   city: "Алматы",
   serviceArea: "Алматы и Алматинская область",
   siteUrl:
@@ -16,5 +18,5 @@ export const siteConfig = {
 } as const;
 
 export function getWhatsappUrl(message: string = siteConfig.defaultWhatsappText) {
-  return `https://wa.me/${siteConfig.phoneDigits}?text=${encodeURIComponent(message)}`;
+  return `https://wa.me/${siteConfig.whatsappDigits}?text=${encodeURIComponent(message)}`;
 }

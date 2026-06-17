@@ -3,7 +3,7 @@
 import { FormEvent, useRef, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { services } from "@/data/services";
-import { siteConfig } from "@/config/site";
+import { getWhatsappUrl } from "@/config/site";
 import { trackEvent } from "@/lib/analytics";
 
 export function LeadForm({
@@ -74,7 +74,7 @@ export function LeadForm({
     });
 
     window.open(
-      `https://wa.me/${siteConfig.phoneDigits}?text=${encodeURIComponent(message)}`,
+      getWhatsappUrl(message),
       "_blank",
       "noopener,noreferrer",
     );
